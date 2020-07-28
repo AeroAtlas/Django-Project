@@ -2,6 +2,9 @@
 node_modules
 /dist
 
+#added later not default
+/client
+
 # local env files
 .env.local
 .env.*.local
