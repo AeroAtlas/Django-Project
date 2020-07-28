@@ -1,28 +1,29 @@
-const express = require('express');
+const router = require("express").Router();
 const mongodb = require('mongodb');
-const router = express.Router();
-const MongoClient = require('mongodb').MongoClient;
+require("dotenv").config();
 
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
+//Need to get dotenv working
 
-const uri = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.lk4gs.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`;
+
 //Get Posts
 router.get('/', async (req, res) => {
+  res.send(process.env.MONGODB_URI)
+  console.log(typeof process.env.MONGODB_URI)
   const posts = await loadPostsCollection();
-  res.send(await posts.find({}).toArray());
+  // res.send(await posts.find({}).toArray());
 })
+// router.get('/', (req, res) => {
+//   mongodb.MongoClient.connect(uri,{useNewUrlParser: true}).db('vampdb').collection('vamp').then(res => 
+//     res.send(await posts.find({}).toArray()))
+// })
+
 
 //Add Post
 router.post('/', async (req, res) => {
   const posts = await loadPostsCollection();
   await posts.insertOne({
     text: req.body.text,
-    createdAt: new Date()
+    createdAt: new Date() 
   });
   res.status(201).send();
 })
@@ -34,7 +35,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 async function loadPostsCollection() {
-  const client = await mongodb.MongoClient.connect('mongodb+srv://atlas1:SBztQTIqyFrKkufH@cluster0.lk4gs.mongodb.net/vampdb?retryWrites=true&w=majority', {useNewUrlParser: true});
+  const client = await mongodb.MongoClient.connect(uri, {useNewUrlParser: true});
   return client.db('vampdb').collection('vamp');
 }
 
