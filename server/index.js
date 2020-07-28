@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 //Create static folder
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 //Connect to local MongoDB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/vampdb", { useNewUrlParser: true });
