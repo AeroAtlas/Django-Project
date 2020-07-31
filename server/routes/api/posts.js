@@ -2,6 +2,9 @@ const router = require("express").Router();
 const mongodb = require('mongodb');
 require("dotenv").config();
 
+//Need to get dotenv working
+
+
 //Get Posts
 router.get('/', async (req, res) => {
   res.send(process.env.MONGODB_URI)
