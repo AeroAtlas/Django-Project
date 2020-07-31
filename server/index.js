@@ -19,7 +19,7 @@ app.use(cors());
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/vampdb", { useNewUrlParser: true });
 
 //Port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 //Go to folder Routes/api/posts for post requests using express
 const posts = require('./routes/api/posts');
