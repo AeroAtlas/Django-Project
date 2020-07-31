@@ -10,7 +10,16 @@ router.get('/', async (req, res) => {
   res.send(process.env.MONGODB_URI)
   console.log(typeof process.env.MONGODB_URI)
   const posts = await loadPostsCollection();
+<<<<<<< HEAD
+=======
+  // res.send(await posts.find({}).toArray());
+>>>>>>> a09701dd217cbe6db47aaaf014c6b90695ec3556
 })
+// router.get('/', (req, res) => {
+//   mongodb.MongoClient.connect(uri,{useNewUrlParser: true}).db('vampdb').collection('vamp').then(res => 
+//     res.send(await posts.find({}).toArray()))
+// })
+
 
 //Add Post
 router.post('/', async (req, res) => {
